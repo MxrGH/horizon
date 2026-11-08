@@ -718,10 +718,10 @@ pub struct Graphics {
     /// Skip sections hidden behind closed ones (vanilla's occlusion graph).
     pub cave_culling: bool,
     /// Near solid terrain culled, and its draws listed, on the GPU (`gfx::gpu_culling`), where it
-    /// is offered (`gpu_culling_offer`). Off by default (GPU Culling, Performance graphics); it
-    /// applies at once, and no preset sets it. Every save writes it, so a default turned on later
-    /// needs a new key, as `batchTranslucent` did. Auto turns it on only where the CPU limits the
-    /// frame and it makes the frame faster (`autotune`).
+    /// is offered (`gpu_culling_offer`). Off by default; the Performance preset selects Auto,
+    /// which turns it on only where the CPU limits the frame and it makes the frame faster
+    /// (`autotune`). It applies at once. Every save writes it, so a default turned on later
+    /// needs a new key, as `batchTranslucent` did.
     pub gpu_culling: GpuCullingMode,
     /// Skip drawing entities hidden behind opaque terrain, synchronously or asynchronously.
     pub entity_culling: EntityCullingMode,
@@ -1196,6 +1196,12 @@ pub fn apply_preset(preset: Preset, s: &mut crate::settings::Settings) {
     g.preset = preset;
     g.cave_culling = true;
     g.animated_textures = true;
+    if preset == Preset::Performance {
+        // GPU Culling's Auto mode measures CPU and GPU frame times and keeps the
+        // optimization only when it actually improves this machine's frame time.
+        // Unsupported GPUs and GPU-bound scenes stay on the original path.
+        g.gpu_culling = GpuCullingMode::Auto;
+    }
     g.chunk_updates = 0;
     g.upload_budget_kib = 0;
     g.sky = true;
@@ -1409,6 +1415,22 @@ mod tests {
                 LeafCullingMode::Off,
                 "{text:?}"
             );
+        }
+    }
+
+    #[test]
+    fn performance_preset_selects_adaptive_gpu_culling() {
+        let mut s = crate::settings::Settings::default();
+        assert_eq!(s.horizon.gpu_culling, GpuCullingMode::Off);
+        apply_preset(Preset::Performance, &mut s);
+        assert_eq!(s.horizon.gpu_culling, GpuCullingMode::Auto);
+
+        // Other presets do not override an explicit GPU Culling choice.
+        for preset in [Preset::Balanced, Preset::Quality, Preset::Ultra] {
+            let mut s = crate::settings::Settings::default();
+            s.horizon.gpu_culling = GpuCullingMode::On;
+            apply_preset(preset, &mut s);
+            assert_eq!(s.horizon.gpu_culling, GpuCullingMode::On, "{preset:?}");
         }
     }
 
