@@ -428,7 +428,7 @@ mod windows {
             .px(px(12.))
             .window_control_area(WindowControlArea::Drag)
             .child(mark(16., theme))
-            .child(blocks::pixel(13., FontWeight::MEDIUM).child("Horizon"));
+            .child(blocks::pixel(13., FontWeight::MEDIUM).child("Searust"));
         Some(
             div()
                 .relative()
