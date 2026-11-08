@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="docs/media/banner.webp" alt="Searust: the game you know, rebuilt in Rust" width="100%">
-</p>
-
-<p align="center">
   <a href="https://playhorizon.dev"><b>Website</b></a> ·
   <a href="#download"><b>Download</b></a> ·
   <a href="https://playhorizon.dev/docs/"><b>Docs</b></a> ·
@@ -18,7 +14,7 @@
 
 # Searust
 
-**Searust: Minecraft: Java Edition 26.3, rewritten in Rust.** Your worlds, the same rules and the same terrain as the Java game, checked against it by hundreds of differential tests, in one native program with no Java. Free, open source (MIT) and unofficial: you play it with your own copy of Java Edition.
+**Searust is Minecraft: Java Edition 26.3, rewritten in Rust.** Your worlds, the same rules and the same terrain as the Java game, checked against it by hundreds of differential tests, in one native program with no Java. Free, open source (MIT) and unofficial: you play it with your own copy of Java Edition.
 
 <p align="center">
   <img src="docs/media/readme/valley.webp" alt="A river valley with a plains village, savanna hills and a cherry grove, seen from above with a long view distance" width="100%">
@@ -51,9 +47,9 @@ Everything below is in the current release.
 
 ## Performance
 
-**Searust draws more frames per second than Java Edition, and loads faster, on the same machine, world and path.** `tools/perf_bench.py` runs each game in turn, from a fresh world (seed 1234), waiting for the terrain and then flying it over a village, a forest, an ocean and a mountain. Measured on 2026-10-29/30 on an idle Windows 11 machine (Ryzen 7 9800X3D, RTX 5080), Horizon v0.2.97 as the launcher installs it, 1280x720 in a window, VSync off, three games per figure. Frames per second, mean of the four scenes, with the slowest 1% of frames in brackets:
+**Searust draws more frames per second than Java Edition, and loads faster, on the same machine, world and path.** `tools/perf_bench.py` runs each game in turn, from a fresh world (seed 1234), waiting for the terrain and then flying it over a village, a forest, an ocean and a mountain. Measured on 2026-10-29/30 on an idle Windows 11 machine (Ryzen 7 9800X3D, RTX 5080), Searust's predecessor build, Horizon v0.2.97, as the launcher installs it, 1280x720 in a window, VSync off, three games per figure. Frames per second, mean of the four scenes, with the slowest 1% of frames in brackets:
 
-| Render distance | Searust v0.2.97 | Vanilla 26.3 | Vanilla + mods |
+| Render distance | Horizon v0.2.97 (pre-Searust) | Vanilla 26.3 | Vanilla + mods |
 | --- | --- | --- | --- |
 | 8 chunks | 3,289 (1,327) | 2,437 (640) | 2,375 (709) |
 | 16 chunks | 2,074 (598) | 1,661 (375) | 1,586 (432) |
@@ -77,10 +73,12 @@ Get **the Searust launcher** from [playhorizon.dev](https://playhorizon.dev), or
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/media/readme/launcher-home.webp" alt="The launcher's Home page: the Searust instance, Play, the version picker, the friend invite field, screenshots and the patch log"></td>
-    <td width="50%"><img src="docs/media/readme/launcher-mods.webp" alt="The launcher's Mods page: Horizon's mod registry with Zoom selected, and tabs for modpacks, resource packs, shader packs and data packs"></td>
+    <td width="50%"><img src="docs/media/readme/launcher-home.webp" alt="The launcher's Home page in a pre-Searust screenshot"></td>
+    <td width="50%"><img src="docs/media/readme/launcher-mods.webp" alt="The launcher's Mods page in a pre-Searust screenshot"></td>
   </tr>
 </table>
+
+<sub>Launcher screenshots above show the earlier Horizon-branded interface; the application branding is being updated to Searust.</sub>
 
 ## Mods and shader packs
 
