@@ -101,7 +101,17 @@ fn draw_logo(atlas: &HudAtlas, batch: &mut HudBatch, w: f32) {
     let label = "Searust";
     let width = HudBatch::text_width(atlas, label);
     let scale = 4.0;
-    for (color, offset) in [(rgba(0, 0, 0, 220), 2.0), (rgba(255, 255, 255, 255), 0.0)] {
+    // A restrained sea-glass accent gives the title screen its own identity
+    // without replacing the vanilla menu controls or changing their hitboxes.
+    batch.fill(
+        atlas,
+        (w / 2.0).floor() - 34.0,
+        72.0,
+        68.0,
+        2.0,
+        rgba(28, 190, 190, 255),
+    );
+    for (color, offset) in [(rgba(0, 30, 38, 235), 2.0), (rgba(245, 255, 255, 255), 0.0)] {
         let start = batch.vertices.len();
         batch.text(
             atlas,
