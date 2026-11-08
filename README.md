@@ -31,6 +31,7 @@ Everything below is in the current release.
 - **Mods.** Content mods and native Rust mods, installed from the launcher ([below](#mods-and-shader-packs)).
 - **Servers.** Host one from the launcher, or run `horizon-server` on a VPS ([below](#host-a-server)).
 - **The launcher.** It installs and updates the game, prepares its files from your copy of Minecraft, and updates itself.
+- **Searust main menu.** The title screen uses the Searust wordmark and a sea-glass accent while keeping Minecraft's familiar menu layout and controls.
 
 <table>
   <tr>
@@ -78,7 +79,7 @@ Get **the Searust launcher** from [playhorizon.dev](https://playhorizon.dev), or
   </tr>
 </table>
 
-<sub>Launcher screenshots above show the earlier Horizon-branded interface; the application branding is being updated to Searust.</sub>
+<sub>The launcher screenshots above are older captures and may still show the previous interface branding; the in-game title screen now carries the Searust wordmark and accent.</sub>
 
 ## Mods and shader packs
 
