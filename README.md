@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="docs/media/banner.webp" alt="Horizon: the game you know, rebuilt in Rust" width="100%">
-</p>
-
-<p align="center">
   <a href="https://playhorizon.dev"><b>Website</b></a> ·
   <a href="#download"><b>Download</b></a> ·
   <a href="https://playhorizon.dev/docs/"><b>Docs</b></a> ·
@@ -16,9 +12,9 @@
   <a href="#project-status"><img src="https://img.shields.io/badge/player--visible%20gaps-0%20open-F0795A" alt="Player-visible gaps open"></a>
 </p>
 
-# Horizon
+# Searust
 
-**Minecraft: Java Edition 26.3, rewritten in Rust.** Your worlds, the same rules and the same terrain as the Java game, checked against it by hundreds of differential tests, in one native program with no Java. Free, open source (MIT) and unofficial: you play it with your own copy of Java Edition.
+**Searust is Minecraft: Java Edition 26.3, rewritten in Rust.** Your worlds, the same rules and the same terrain as the Java game, checked against it by hundreds of differential tests, in one native program with no Java. Free, open source (MIT) and unofficial: you play it with your own copy of Java Edition.
 
 <p align="center">
   <img src="docs/media/readme/valley.webp" alt="A river valley with a plains village, savanna hills and a cherry grove, seen from above with a long view distance" width="100%">
@@ -35,6 +31,7 @@ Everything below is in the current release.
 - **Mods.** Content mods and native Rust mods, installed from the launcher ([below](#mods-and-shader-packs)).
 - **Servers.** Host one from the launcher, or run `horizon-server` on a VPS ([below](#host-a-server)).
 - **The launcher.** It installs and updates the game, prepares its files from your copy of Minecraft, and updates itself.
+- **Searust main menu.** The title screen uses the Searust wordmark and a sea-glass accent while keeping Minecraft's familiar menu layout and controls.
 
 <table>
   <tr>
@@ -51,19 +48,19 @@ Everything below is in the current release.
 
 ## Performance
 
-**Horizon draws more frames per second than Java Edition, and loads faster, on the same machine, world and path.** `tools/perf_bench.py` runs each game in turn, from a fresh world (seed 1234), waiting for the terrain and then flying it over a village, a forest, an ocean and a mountain. Measured on 2026-10-29/30 on an idle Windows 11 machine (Ryzen 7 9800X3D, RTX 5080), Horizon v0.2.97 as the launcher installs it, 1280x720 in a window, VSync off, three games per figure. Frames per second, mean of the four scenes, with the slowest 1% of frames in brackets:
+**Searust draws more frames per second than Java Edition, and loads faster, on the same machine, world and path.** `tools/perf_bench.py` runs each game in turn, from a fresh world (seed 1234), waiting for the terrain and then flying it over a village, a forest, an ocean and a mountain. Measured on 2026-10-29/30 on an idle Windows 11 machine (Ryzen 7 9800X3D, RTX 5080), Searust's predecessor build, Horizon v0.2.97, as the launcher installs it, 1280x720 in a window, VSync off, three games per figure. Frames per second, mean of the four scenes, with the slowest 1% of frames in brackets:
 
-| Render distance | Horizon v0.2.97 | Vanilla 26.3 | Vanilla + mods |
+| Render distance | Horizon v0.2.97 (pre-Searust) | Vanilla 26.3 | Vanilla + mods |
 | --- | --- | --- | --- |
 | 8 chunks | 3,289 (1,327) | 2,437 (640) | 2,375 (709) |
 | 16 chunks | 2,074 (598) | 1,661 (375) | 1,586 (432) |
 | 32 chunks | 1,207 (333) | 1,031 (176) | 879 (264) |
 
-"Vanilla + mods" is Sodium, Lithium, FerriteCore and ImmediatelyFast. Horizon reaches the title screen in 2.9–3.2 s against vanilla's 7.5–7.7 s (the modded client's 10.8–11.1 s), loads a scene's chunks 2.9–3.8 times faster, and playing holds a steady working set of 1.1–1.7 GB against 1.9–2.9 GB. Every scene with its confidence interval and the run's load log: [the 2026-10-29 reports](benchmarks/perf/windows-9800x3d-5080-2026-10-29.md). Method, and how to measure your own machine: [docs/benchmark.md](docs/benchmark.md). [playhorizon.dev/benchmarks](https://playhorizon.dev/benchmarks) puts these runs beside a 2016 laptop, a Mac mini and a gaming desktop.
+"Vanilla + mods" is Sodium, Lithium, FerriteCore and ImmediatelyFast. Searust reaches the title screen in 2.9–3.2 s against vanilla's 7.5–7.7 s (the modded client's 10.8–11.1 s), loads a scene's chunks 2.9–3.8 times faster, and playing holds a steady working set of 1.1–1.7 GB against 1.9–2.9 GB. Every scene with its confidence interval and the run's load log: [the 2026-10-29 reports](benchmarks/perf/windows-9800x3d-5080-2026-10-29.md). Method, and how to measure your own machine: [docs/benchmark.md](docs/benchmark.md). [playhorizon.dev/benchmarks](https://playhorizon.dev/benchmarks) puts these runs beside a 2016 laptop, a Mac mini and a gaming desktop.
 
 ## Download
 
-Get **the Horizon launcher** from [playhorizon.dev](https://playhorizon.dev), or from [the launcher releases](https://github.com/horizon-rust/horizon/releases?q=launcher&expanded=true):
+Get **the Searust launcher** from [playhorizon.dev](https://playhorizon.dev), or from [the launcher releases](https://github.com/horizon-rust/horizon/releases?q=launcher&expanded=true):
 
 | Platform | File | Needs |
 | --- | --- | --- |
@@ -77,23 +74,25 @@ Get **the Horizon launcher** from [playhorizon.dev](https://playhorizon.dev), or
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/media/readme/launcher-home.webp" alt="The launcher's Home page: the Horizon instance, Play, the version picker, the friend invite field, screenshots and the patch log"></td>
-    <td width="50%"><img src="docs/media/readme/launcher-mods.webp" alt="The launcher's Mods page: Horizon's mod registry with Zoom selected, and tabs for modpacks, resource packs, shader packs and data packs"></td>
+    <td width="50%"><img src="docs/media/readme/launcher-home.webp" alt="The launcher's Home page in a pre-Searust screenshot"></td>
+    <td width="50%"><img src="docs/media/readme/launcher-mods.webp" alt="The launcher's Mods page in a pre-Searust screenshot"></td>
   </tr>
 </table>
+
+<sub>The launcher screenshots above are older captures and may still show the previous interface branding; the in-game title screen now carries the Searust wordmark and accent.</sub>
 
 ## Mods and shader packs
 
 - **Content mods** (`.hmod`): blocks, items, recipes, loot, models and textures, with no code.
 - **Native mods** (`.hnmod`): Rust that the launcher compiles into the game for you, with nothing to install.
-- **Java mods** (Fabric, NeoForge, Forge) don't run: Horizon has no Java. The launcher carries over the data and assets inside their jars, and imports modpacks (`.mrpack`, CurseForge zips, Prism instances) the same way ([modpacks](https://playhorizon.dev/docs/modpacks)).
-- **Shader packs**: Iris/OptiFine-format packs (`shaders/` folders) and Horizon's own WGSL packs, under Video Settings → Shader Packs ([pack format](docs/shaders.md)).
+- **Java mods** (Fabric, NeoForge, Forge) don't run: Searust has no Java. The launcher carries over the data and assets inside their jars, and imports modpacks (`.mrpack`, CurseForge zips, Prism instances) the same way ([modpacks](https://playhorizon.dev/docs/modpacks)).
+- **Shader packs**: Iris/OptiFine-format packs (`shaders/` folders) and Searust's own WGSL packs, under Video Settings → Shader Packs ([pack format](docs/shaders.md)).
 
 Mods are off by default: a fresh install plays exactly like vanilla 26.3. The launcher's Mods page browses Horizon's registry and Modrinth. [Mods](https://playhorizon.dev/docs/mods) · [make a mod](docs/mods.md).
 
 ## Host a server
 
-The launcher's **Servers** page creates, starts, backs up and updates a server, and invites friends. On a VPS, `horizon-server` installs with one command, needs no Java, and takes vanilla 26.3 and Horizon players alike. [Host a server](https://playhorizon.dev/docs/hosting) ([reference](docs/hosting.md)).
+The launcher's **Servers** page creates, starts, backs up and updates a server, and invites friends. On a VPS, `horizon-server` installs with one command, needs no Java, and takes vanilla 26.3 and Searust players alike. [Host a server](https://playhorizon.dev/docs/hosting) ([reference](docs/hosting.md)).
 
 ## Agent control
 

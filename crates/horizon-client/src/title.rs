@@ -96,17 +96,43 @@ fn recover_issues(dir: &Path) -> [Option<crate::save::DatIssue>; 2] {
 /// `LogoRenderer.extractRenderState`: the logo's top 44 of 64 rows, then the
 /// edition banner's top 14 of 16 rows overlapping its bottom by 7.
 fn draw_logo(atlas: &HudAtlas, batch: &mut HudBatch, w: f32) {
-    batch.sprite_region(
+    // Draw a native Searust wordmark instead of Minecraft's original title
+    // artwork. Keep the edition ribbon below it, as on the vanilla title screen.
+    let label = "Searust";
+    let width = HudBatch::text_width(atlas, label);
+    let scale = 4.0;
+    // A restrained sea-glass accent gives the title screen its own identity
+    // without replacing the vanilla menu controls or changing their hitboxes.
+    batch.fill(
         atlas,
-        "gui/title/minecraft",
-        [(w / 2.0).floor() - 128.0, 30.0, 256.0, 44.0],
-        256.0,
-        64.0,
+        (w / 2.0).floor() - 34.0,
+        72.0,
+        68.0,
+        2.0,
+        rgba(28, 190, 190, 255),
     );
+    for (color, offset) in [(rgba(0, 30, 38, 235), 2.0), (rgba(245, 255, 255, 255), 0.0)] {
+        let start = batch.vertices.len();
+        batch.text(
+            atlas,
+            label,
+            -(width / 2.0).floor(),
+            0.0,
+            color,
+            true,
+        );
+        for vertex in &mut batch.vertices[start..] {
+            let [x, y] = vertex.pos;
+            vertex.pos = [
+                w / 2.0 + x * scale,
+                56.0 + (y + offset) * scale,
+            ];
+        }
+    }
     batch.sprite_region(
         atlas,
         crate::title_edition::SPRITE,
-        [(w / 2.0).floor() - 64.0, 30.0 + 44.0 - 7.0, 128.0, 14.0],
+        [(w / 2.0).floor() - 64.0, 56.0, 128.0, 14.0],
         128.0,
         16.0,
     );
@@ -2626,7 +2652,7 @@ Would you like to enable the Narrator or visit the Accessibility Settings?",
                         ];
                     }
                 }
-                let version = format!("Horizon {} (Rust)", horizon_core::VANILLA_VERSION);
+                let version = format!("Searust {} (Rust)", horizon_core::VANILLA_VERSION);
                 batch.text(atlas, &version, 2.0, h - 10.0, u32::MAX, true);
                 // A nightly names its build in the top-left corner, the one spot no button reaches at any GUI
                 // scale, so screenshots and reports say which build they come from.
